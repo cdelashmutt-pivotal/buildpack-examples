@@ -43,8 +43,8 @@ def main():
             ready = select.select([client,],[], [],2)
             if ready[0]:
                 data = client.recv(4096)
-                print 'Got request:', data
                 client.sendall(message)
+                client.shutdown(socket.SHUT_RDWR)
                 client.close()
         except KeyboardInterrupt:
             print
