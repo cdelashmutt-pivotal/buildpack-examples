@@ -29,7 +29,7 @@ def main():
         print 'Using default message'
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create a socket object
-    s.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1) # Reuse TIME_WAIT sockets
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # Reuse TIME_WAIT sockets
     host = os.environ.get('VCAP_APP_HOST', '0.0.0.0') # Get local machine address
     port = int(os.environ.get('VCAP_APP_PORT', '5959')) # Use the assigned port.
     s.bind((host, port))        # Bind to the port
