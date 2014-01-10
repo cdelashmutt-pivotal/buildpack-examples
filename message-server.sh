@@ -30,7 +30,6 @@ def main():
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create a socket object
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) # Reuse TIME_WAIT sockets
-    s.setsockopt(socket.SOL_SOCKET, socket.TCP_NODELAY, 1) # Send immediate
     host = os.environ.get('VCAP_APP_HOST', '0.0.0.0') # Get local machine address
     port = int(os.environ.get('VCAP_APP_PORT', '5959')) # Use the assigned port.
     s.bind((host, port))        # Bind to the port
@@ -46,6 +45,7 @@ def main():
                 print 'Getting data'
                 data = client.recv(4096)
                 print 'Sending response'
+                client.sendall('HTTP/1.1 200 OK\n\n')
                 client.sendall(message)
                 print 'Prepare to close'
                 try:
