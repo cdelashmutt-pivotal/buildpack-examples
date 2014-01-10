@@ -42,18 +42,18 @@ def main():
             client, addr = s.accept()
             ready = select.select([client,],[], [],2)
             if ready[0]:
-                print 'Getting data'
-                data = client.recv(4096)
-                print 'Sending response'
-                client.sendall('HTTP/1.1 200 OK\n\n')
-                client.sendall(message)
-                print 'Prepare to close'
                 try:
+                  print 'Getting data'
+                  data = client.recv(4096)
+                  print 'Sending response'
+                  client.sendall('HTTP/1.1 200 OK\n\n')
+                  client.sendall(message)
+                  print 'Prepare to close'
                   client.shutdown(socket.SHUT_RDWR)
+                  print 'Close'
+                  client.close()
                 except:
                   print 'Client aborted connection'
-                print 'Close'
-                client.close()
         except KeyboardInterrupt:
             print
             print "Stop."
