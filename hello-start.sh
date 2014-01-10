@@ -15,8 +15,8 @@ def main():
     DROPLET_DIR = os.path.dirname(os.path.dirname(sys.argv[0]))
     MESSAGE_FILE=os.path.join(DROPLET_DIR, 'message.msg')
 
-    # Read the message, just default to command line
-    message = sys.argv[1]
+    # Read the message
+    message = sys.argv[1] if len(sys.argv) > 1 else 'Default message'
 
     try:
         with open(MESSAGE_FILE, 'rt') as messageFile:
