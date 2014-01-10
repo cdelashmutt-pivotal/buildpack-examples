@@ -44,7 +44,7 @@ def main():
             if ready[0]:
                 data = client.recv(4096)
                 client.sendall(message)
-                client.shutdown(socket.SHUT_RDWR)
+                client.shutdown(socket.SHUT_WR)
                 client.close()
         except KeyboardInterrupt:
             print
