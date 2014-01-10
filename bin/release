@@ -15,8 +15,12 @@
 # default_process_types indicates the type of application being run and the 
 # command line used to start it. At this time only web type of applications 
 # are supported.
+#
+# NOTE: It seems that as of at least 01/10/14, the config_vars setting isn't used
+# by Cloud Foundry.  The alternative mechanism for passing environment to the 
+# running service is to set them via the start up script. 
 
 print 'config_vars:'
-print '  MY_ENV_VAR: myValue'
+print '  THIS_DOES_NOTHING: DEPRECATED'
 print 'default_process_types:'
-print '  web: ./print-hello.sh'
+print '  web: MY_ENV_VAR=test; ./print-hello.sh'
