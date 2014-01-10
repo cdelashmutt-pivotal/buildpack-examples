@@ -40,8 +40,6 @@ with open(START_SCRIPT, 'wb') as startScript:
   startScript.write('echo \"')
   startScript.write(message)
   startScript.write('\"\n')
-  startScript.write('echo \"MY_ENV_VAR: ${MY_ENV_VAR}\"\n')
-  startScript.write('sleep 1')
 
 # Need to make this generated start script executable
 os.chmod(START_SCRIPT, 0775)
