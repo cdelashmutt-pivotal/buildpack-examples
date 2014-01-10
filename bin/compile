@@ -44,4 +44,4 @@ with open(START_SCRIPT, 'wb') as startScript:
   startScript.write('sleep 10')
 
 # Need to make this generated start script executable
-os.chmod(START_SCRIPT, stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+os.chmod(START_SCRIPT, 0775)
