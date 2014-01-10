@@ -20,6 +20,7 @@
 
 import sys
 import os
+import stat
 
 BUILD_DIR=sys.argv[1]
 MESSAGE_FILE=os.path.join(BUILD_DIR, 'message.msg')
@@ -42,4 +43,5 @@ with open(START_SCRIPT, 'wb') as startScript:
   startScript.write('echo \"MY_ENV_VAR: ${MY_ENV_VAR}\"\n')
   startScript.write('sleep 10')
 
-
+# Need to make this generated start script executable
+os.chmod(START_SCRIPT, stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
