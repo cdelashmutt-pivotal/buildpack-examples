@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+# The compile script builds the droplet that will be run by the DEA and will 
+# therefore contain all the components necessary to run the application.
+#
+# The script is run with two arguments, the build directory for the 
+# application and the cache directory, which is a location the buildpack can 
+# use to store assets during the build process.
+#
+# During execution of this script all output sent to STDOUT will be relayed 
+# via CF back to the end user. 
+#
+# The generally accepted pattern for a more complex compile script is to break 
+# out functionality in to a 'language_pack'. A good example of this can be seen 
+# at 
+# https://github.com/cloudfoundry/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
+
+# This particular script will simply create a print-hello.sh script file that 
+# will be executed by Cloud Foundry at this application's startup.
+
+import sys
+import os
+
+BUILD_DIR=sys.argv[1]
+MESSAGE_FILE=os.path.join(BUILD_DIR, 'message.msg')
+START_SCRIPT=os.path.join(BUILD_DIR, 'print-hello.sh')
+
+print 'Opening message file'
+
+message = ''
+with open(MESSAGE_FILE, 'rt') as messageFile:
+  message = messageFile.read()
+
+print 'Got message: ', message
+
+print 'Writing start script'
+with open(START_SCRIPT, 'wb') as startScript:
+  startScript.write('#!/bin/sh\n')
+  startScript.write('echo \"')
+  startScript.write(message)
+  startScript.write('\"\n')
+  startScript.write('echo \"MY_ENV_VAR: ${MY_ENV_VAR}\"\n')
+  startScript.write('sleep 10')
+
+
