@@ -47,7 +47,10 @@ def main():
                 print 'Sending response'
                 client.sendall(message)
                 print 'Prepare to close'
-                client.shutdown(socket.SHUT_WR)
+                try:
+                  client.shutdown(socket.SHUT_WR)
+                except:
+                  print 'Client aborted connection'
                 print 'Close'
                 client.close()
         except KeyboardInterrupt:
