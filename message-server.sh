@@ -12,6 +12,10 @@ import socket
 import select
 
 def main():
+    # Open stdout and stderr buffered
+    sys.stdout = os.fdopen(sys.stdout.fileno(), 'wb', 0)
+    sys.stderr = os.fdopen(sys.stderr.fileno(), 'wb', 0)
+
     DROPLET_DIR = os.path.dirname(os.path.dirname(sys.argv[0]))
     MESSAGE_FILE=os.path.join(DROPLET_DIR, 'message.msg')
 
