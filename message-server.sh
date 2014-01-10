@@ -29,11 +29,11 @@ def main():
         print 'Using default message'
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create a socket object
-    host = socket.gethostname() # Get local machine name
+    host = os.environ.get('VCAP_APP_HOST', '0.0.0.0') # Get local machine address
     port = int(os.environ.get('VCAP_APP_PORT', '5959')) # Use the assigned port.
     s.bind((host, port))        # Bind to the port
 
-    print "Listening on port {p}...".format(p=port)
+    print "Listening on host {h} and port {p}...".format(h=host,p=port)
  
     s.listen(5)                 # Now wait for client connection.
     while True:
