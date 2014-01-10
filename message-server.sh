@@ -42,9 +42,13 @@ def main():
             client, addr = s.accept()
             ready = select.select([client,],[], [],2)
             if ready[0]:
+                print 'Getting data'
                 data = client.recv(4096)
+                print 'Sending response'
                 client.sendall(message)
+                print 'Prepare to close'
                 client.shutdown(socket.SHUT_WR)
+                print 'Close'
                 client.close()
         except KeyboardInterrupt:
             print
