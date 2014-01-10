@@ -31,6 +31,7 @@ BUILD_DIR=sys.argv[1]
 MESSAGE_FILE=os.path.join(BUILD_DIR, 'message.msg')
 #Name for startup script
 START_SCRIPT_NAME='hello-start.sh'
+MESSAGE_SERVER_SCRIPT='message-server.sh'
 
 message = ''
 with open(MESSAGE_FILE, 'rt') as messageFile:
@@ -42,4 +43,9 @@ print 'Putting start script into droplet'
 shutil.copy(
   os.path.join(BP_DIR, START_SCRIPT_NAME),
   os.path.join(BUILD_DIR, START_SCRIPT_NAME)
+)
+
+shutil.copy(
+  os.path.join(BP_DIR, MESSAGE_SERVER_SCRIPT),
+  os.path.join(BUILD_DIR, MESSAGE_SERVER_SCRIPT)
 )
