@@ -30,7 +30,7 @@ def main():
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create a socket object
     host = socket.gethostname() # Get local machine name
-    port = int(os.environ.get('VCAPP_APP_PORT', '5959')) # Use the assigned port.
+    port = int(os.environ.get('VCAP_APP_PORT', '5959')) # Use the assigned port.
     s.bind((host, port))        # Bind to the port
 
     print "Listening on port {p}...".format(p=port)
