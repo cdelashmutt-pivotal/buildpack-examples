@@ -52,8 +52,8 @@ def main():
                   client.shutdown(socket.SHUT_RDWR)
                   print 'Close'
                   client.close()
-                except:
-                  print 'Client aborted connection'
+                except socket.error, msg:
+                  print 'Client connection error:', msg
         except KeyboardInterrupt:
             print
             print "Stop."
