@@ -15,18 +15,22 @@
 # at 
 # https://github.com/cloudfoundry/heroku-buildpack-ruby/blob/master/lib/language_pack/ruby.rb
 
-# This particular script will simply create a print-hello.sh script file that 
+# This particular script will simply copy a hello-start.sh script file that 
 # will be executed by Cloud Foundry at this application's startup.
 
 import sys
 import os
-import stat
+import shutil
 
+#Directory of the buildpack
+BP_DIR = os.path.dirname(os.path.dirname(sys.argv[0]))
+
+#The directory the files for the droplet are put
 BUILD_DIR=sys.argv[1]
+#Our message file for the "app"
 MESSAGE_FILE=os.path.join(BUILD_DIR, 'message.msg')
-START_SCRIPT=os.path.join(BUILD_DIR, 'print-hello.sh')
-
-print 'Opening message file'
+#Name for startup script
+START_SCRIPT_NAME='hello-start.sh'
 
 message = ''
 with open(MESSAGE_FILE, 'rt') as messageFile:
@@ -34,12 +38,8 @@ with open(MESSAGE_FILE, 'rt') as messageFile:
 
 print 'Got message: ', message
 
-print 'Writing start script'
-with open(START_SCRIPT, 'wb') as startScript:
-  startScript.write('#!/bin/sh\n')
-  startScript.write('echo \"')
-  startScript.write(message)
-  startScript.write('\"\n')
-
-# Need to make this generated start script executable
-os.chmod(START_SCRIPT, 0775)
+print 'Putting start script into droplet'
+shutil.copy(
+  os.path.join(BP_DIR, START_SCRIPT_NAME),
+  os.path.join(BUILD_DIR, START_SCRIPT_NAME)
+)

@@ -23,4 +23,4 @@
 print 'config_vars:'
 print '  THIS_DOES_NOTHING: DEPRECATED'
 print 'default_process_types:'
-print '  web: MY_ENV_VAR=test; ./print-hello.sh'
+print '  web: ./hello-start.sh'
