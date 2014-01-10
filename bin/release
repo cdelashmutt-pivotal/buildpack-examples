@@ -23,4 +23,4 @@
 print 'config_vars:'
 print '  THIS_DOES_NOTHING: DEPRECATED'
 print 'default_process_types:'
-print '  web: ./hello-start.sh &'
+print '  web: ./hello-start.sh'
