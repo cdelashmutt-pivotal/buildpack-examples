@@ -48,7 +48,7 @@ def main():
                 client.sendall(message)
                 print 'Prepare to close'
                 try:
-                  client.shutdown(socket.SHUT_WR)
+                  client.shutdown(socket.SHUT_RDWR)
                 except:
                   print 'Client aborted connection'
                 print 'Close'
