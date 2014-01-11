@@ -49,7 +49,12 @@ print 'Got message: ', message
 # The start script is so small, we just included it with the buildpack, but in 
 # a real buildpack the server binaries are great candidates for caching
 print 'Putting start script into droplet'
-shutil.copy(
-  os.path.join(BP_DIR, 'message-server'),
-  os.path.join(BUILD_DIR, 'message-server')
-)
+
+try:
+  shutil.copy(
+    os.path.join(BP_DIR, 'message-server'),
+    os.path.join(BUILD_DIR, 'message-server')
+  )
+except:
+  print "Unexpected error:", sys.exc_info()[0]
+  raise
