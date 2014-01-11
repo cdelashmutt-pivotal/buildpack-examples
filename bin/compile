@@ -55,6 +55,9 @@ try:
     os.path.join(BP_DIR, 'message-server'),
     os.path.join(BUILD_DIR, 'message-server')
   )
+except IOError as (errno, strerror):
+  print "compile: I/O Error({0}) during startup script copy: {1}".format(errno, strerror)
+  raise
 except:
-  print "Unexpected error:", sys.exc_info()[0]
+  print "Unexpected error in compile phase:", sys.exc_info()[0]
   raise
