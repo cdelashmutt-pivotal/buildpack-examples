@@ -20,7 +20,7 @@
 # by Cloud Foundry.  The alternative mechanism for passing environment to the 
 # running service is to set them via the start up script if needed. 
 
-print 'config_varz:'
+print 'config_var:'
 print '  THIS_DOES_NOTHING: DEPRECATED'
 print 'default_process_types:'
-print '  webz: ./message-server'
+print '  web: ./message.sh'
