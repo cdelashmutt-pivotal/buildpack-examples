@@ -19,7 +19,7 @@ if os.path.isfile('messsage.fil'):
   # Let the user know we found the hallmarks of a 'Message-App' style app
   print 'Message-App'
   # Let Cloud Foundry know that this buildpack can indeed handle this application
-  sys.exit(0)
+  sys.exit(2)
 
 # Otherwise, we didn't find out message file, and will let Cloud Foundry know 
 # That this buildpack is unable to handle this application
