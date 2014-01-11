@@ -18,9 +18,9 @@
 #
 # NOTE: It seems that as of at least 01/10/14, the config_vars setting isn't used
 # by Cloud Foundry.  The alternative mechanism for passing environment to the 
-# running service is to set them via the start up script. 
+# running service is to set them via the start up script if needed. 
 
 print 'config_vars:'
 print '  THIS_DOES_NOTHING: DEPRECATED'
 print 'default_process_types:'
-print '  web: ./message-server.sh'
+print '  web: ./message-server'
